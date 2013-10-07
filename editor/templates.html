@@ -1,7 +1,13 @@
 <script type="text/template" id="template_animation">
     <div class="animation-content center-exp">
         <div class="output"></div>
-        <div class="explanation center-exp"></div>
+        <div class="explanation center-exp">
+            <table>
+                <tr class="first"></tr>
+                <tr class="second"></tr>
+                <tr class="xor"></tr>
+            </table>
+        </div>
         <div class="answer"></div>
         <div class="call"></div>
     </div>
@@ -10,21 +16,42 @@
 <script type="text/template" id="template_tryit">
     <div class="tryit-content center-exp">
         <table class="tool">
-            <tr>
+            <tr class="first">
+                <td>First: </td>
                 <td>
-                    <input type="text" value="test">
+                    <input type="number" class="first" min="1" max="255" value="1">
                 </td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+            </tr>
+            <tr class="second">
+                <td>Second: </td>
                 <td>
-                    <button class="bn-check btn">Action</button>
+                    <input type="number" class="second" min="1" max="255" value="2">
                 </td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
             </tr>
             <tr>
-                <td colspan="2" class="checkio-result">
-                    Result:<br>
-                    <span class="checkio-result-in">&nbsp;</span>
+                <td colspan="10">
+                    <input style="width: 300px" type="button" class="bn-check btn" value="Calculate">
                 </td>
             </tr>
-
         </table>
+        <div class="checkio-result center-exp">
+                <span class="checkio-result-in">&nbsp;</span>
+        </div>
     </div>
 </script>

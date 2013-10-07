@@ -4,6 +4,17 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
 
         var cur_slide = {};
 
+        function decToBin(number, len) {
+            len = len || 8;
+            var bin = number.toString(2);
+            var pad = "";
+            for (var i = len; i > bin.length; i--){
+                pad += "0"
+            }
+            return pad + bin;
+        }
+
+
         ext.set_start_game(function (this_e) {
         });
 
@@ -75,44 +86,79 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
                 $content.find('.call').html('Pass: checkio(' + JSON.stringify(checkioInput) + ')');
                 $content.find('.answer').remove();
             }
-            //Dont change the code before it
 
-            //Your code here about test explanation animation
-            //$content.find(".explanation").html("Something text for example");
-            //
-            //
-            //
-            //
-            //
+            var $table = $content.find(".explanation").find("table");
+            var binA = decToBin(checkioInput[0]);
+            var binB = decToBin(checkioInput[1]);
+            var $first = $table.find(".first");
+            var $second = $table.find(".second");
+            var $xor = $table.find(".xor");
+            $first.append($("<td>").text(checkioInput[0] + " = "));
+            $second.append($("<td>").text(checkioInput[1] + " = "));
+            $xor.append($("<td>").text("H = "));
+            for (var i = 1; i < binA.length; i++) {
+                $first.append($("<td>").text(binA[i]));
+                $second.append($("<td>").text(binB[i]));
+                if (i < binA.length - 1) {
+                    $xor.append($("<td>").text(binB[i] == binA[i] ? "0+" : "1+"));
+                }
+                else {
+                    $xor.append($("<td>").text(binB[i] == binA[i] ? "0" : "1"));
+                }
+
+            }
 
 
             this_e.setAnimationHeight($content.height() + 60);
 
         });
 
-       
+        var $tryit;
+//
+        ext.set_console_process_ret(function (this_e, ret) {
+            $tryit.find(".checkio-result-in").html("Your Result: " + ret);
+        });
 
-        var colorOrange4 = "#F0801A";
-        var colorOrange3 = "#FA8F00";
-        var colorOrange2 = "#FAA600";
-        var colorOrange1 = "#FABA00";
+        ext.set_generate_animation_panel(function (this_e) {
 
-        var colorBlue4 = "#294270";
-        var colorBlue3 = "#006CA9";
-        var colorBlue2 = "#65A1CF";
-        var colorBlue1 = "#8FC7ED";
+            $tryit = $(this_e.setHtmlTryIt(ext.get_template('tryit')));
 
-        var colorGrey4 = "#737370";
-        var colorGrey3 = "#9D9E9E";
-        var colorGrey2 = "#C5C6C6";
-        var colorGrey1 = "#EBEDED";
+            var $first = $tryit.find(".first");
+            var $second = $tryit.find(".second");
 
-        var colorWhite = "#FFFFFF";
-        //Your Additional functions or objects inside scope
-        //
-        //
-        //
+            function changeRow(e) {
+                var $this = $(this);
+                var v = parseInt($this.val());
+                if (!v || isNaN(v)) {
+                    v = 1;
+                }
+                else if (v > 255) {
+                    v = 255;
+                }
+                $this.val(v);
+                var binV = decToBin(v);
+                var $row = $tryit.find("tr." + $this.attr("class")).find("td");
+                for (var i = 0; i < binV.length; i++){
+                    $($row[i + 2]).html(binV[i]);
+                }
+                return false;
+            }
+            $tryit.find("input[type=number]").change(changeRow);
+            $tryit.find("input[type=number]").keyup(changeRow);
 
+
+
+            $tryit.find('.bn-check').click(function (e) {
+                var data = [
+                    parseInt($tryit.find("input.first").val()),
+                    parseInt($tryit.find("input.second").val()),
+                ];
+                this_e.sendToConsoleCheckiO(data);
+                e.stopPropagation();
+                return false;
+            });
+
+        });
 
     }
 );
