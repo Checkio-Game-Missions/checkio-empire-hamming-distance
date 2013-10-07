@@ -1,39 +1,37 @@
 <p>
-    <i>( Describe task in general )</i>
+    The Hamming distance between two binary integers is the number of
+    bit positions that differs (<a href="http://en.wikipedia.org/wiki/Hamming_distance">Read at wiki</a>).
+    For example:
+</p>
+<pre>
+    117 = 0 1 1 1 0 1 0 1
+     17 = 0 0 0 1 0 0 0 1
+      H = 0+1+1+0+0+1+0+0 = 3
+
+</pre>
+<p>
+    You are given two positive integers in decimal form.
+    You should calculate the Hamming distance between these two numbers in binary form.
+</p>
+<p>
+    <strong>Input: </strong> A list of two integers.
 </p>
 
 <p>
-    Sum two passed ints
+    <strong>Output: </strong> An integer.
 </p>
-
-<p style="text-align: center;">
-    <img class="for_info_only" title="example" src="{{MEDIA}}example.png" alt="example" width="392px"/>
-    <img class="for_editor_only" title="example" src="{{MEDIA}}example.png" alt="example" width="380px"/>
-</p>
-
-<p><i>( Explain input and output values )</i></p>
-<p>
-    <strong>Input: </strong> Two arguments. Both are int
-</p>
-
-<p>
-    <strong>Output: </strong> Int. 
-</p>
-
-
 
 <div class="for_info_only">
-    <p><i>( Put some usage examples )</i></p>
-    <p>
-        <strong>Example:</strong>
-    </p>
-    <pre class="brush: python">
-checkio(3, 2) == 5
-checkio(5, 7) == 12
-    </pre>
+
+<p>
+    <strong>Example:</strong>
+</p>
+<pre class="brush: python">checkio([117, 17]) == 3
+checkio([1, 2]) == 2
+checkio([16, 15]) == 5</pre>
 </div>
 
 <p class="for_info_only">
     <strong>How it is used: </strong>
-    <i>(Here you can explain how it can be used in development and what is usage of this.)</i>
+    It's a basis for Hamming code and other linear error-correcting codes.
 </p>
