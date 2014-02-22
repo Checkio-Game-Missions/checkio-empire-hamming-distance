@@ -51,9 +51,10 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             }
 
             var checkioInput = data.in;
+            var checkioInputStr = checkioInput[0] + ", " + checkioInput[1];
 
             if (data.error) {
-                $content.find('.call').html('Fail: checkio(' + JSON.stringify(checkioInput) + ')');
+                $content.find('.call').html('Fail: checkio(' + checkioInputStr + ')');
                 $content.find('.output').html(data.error.replace(/\n/g, ","));
 
                 $content.find('.output').addClass('error');
@@ -76,36 +77,38 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             $content.find('.output').html('&nbsp;Your result:&nbsp;' + JSON.stringify(userResult));
 
             if (!result) {
-                $content.find('.call').html('Fail: checkio(' + JSON.stringify(checkioInput) + ')');
+                $content.find('.call').html('Fail: checkio(' + checkioInputStr + ')');
                 $content.find('.answer').html('Right result:&nbsp;' + JSON.stringify(rightResult));
                 $content.find('.answer').addClass('error');
                 $content.find('.output').addClass('error');
                 $content.find('.call').addClass('error');
             }
             else {
-                $content.find('.call').html('Pass: checkio(' + JSON.stringify(checkioInput) + ')');
+                $content.find('.call').html('Pass: checkio(' + checkioInputStr + ')');
                 $content.find('.answer').remove();
             }
 
-            var $table = $content.find(".explanation").find("table");
-            var binA = decToBin(checkioInput[0]);
-            var binB = decToBin(checkioInput[1]);
-            var $first = $table.find(".first");
-            var $second = $table.find(".second");
-            var $xor = $table.find(".xor");
-            $first.append($("<td>").text(checkioInput[0] + " = "));
-            $second.append($("<td>").text(checkioInput[1] + " = "));
-            $xor.append($("<td>").text("H = "));
-            for (var i = 1; i < binA.length; i++) {
-                $first.append($("<td>").text(binA[i]));
-                $second.append($("<td>").text(binB[i]));
-                if (i < binA.length - 1) {
-                    $xor.append($("<td>").text(binB[i] == binA[i] ? "0+" : "1+"));
-                }
-                else {
-                    $xor.append($("<td>").text(binB[i] == binA[i] ? "0" : "1"));
-                }
+            if (checkioInput[0] < 256 && checkioInput[1] < 256) {
+                var $table = $content.find(".explanation").find("table");
+                var binA = decToBin(checkioInput[0]);
+                var binB = decToBin(checkioInput[1]);
+                var $first = $table.find(".first");
+                var $second = $table.find(".second");
+                var $xor = $table.find(".xor");
+                $first.append($("<td>").text(checkioInput[0] + " = "));
+                $second.append($("<td>").text(checkioInput[1] + " = "));
+                $xor.append($("<td>").text("H = "));
+                for (var i = 1; i < binA.length; i++) {
+                    $first.append($("<td>").text(binA[i]));
+                    $second.append($("<td>").text(binB[i]));
+                    if (i < binA.length - 1) {
+                        $xor.append($("<td>").text(binB[i] == binA[i] ? "0+" : "1+"));
+                    }
+                    else {
+                        $xor.append($("<td>").text(binB[i] == binA[i] ? "0" : "1"));
+                    }
 
+                }
             }
 
 
@@ -151,9 +154,9 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             $tryit.find('.bn-check').click(function (e) {
                 var data = [
                     parseInt($tryit.find("input.first").val()),
-                    parseInt($tryit.find("input.second").val()),
+                    parseInt($tryit.find("input.second").val())
                 ];
-                this_e.sendToConsoleCheckiO(data);
+                this_e.sendToConsoleCheckiO(data[0], data[1]);
                 e.stopPropagation();
                 return false;
             });
