@@ -19,19 +19,12 @@ TESTS = {
         {"input": [84, 198], "answer": 3},
         {"input": [57, 39], "answer": 4},
         {"input": [140, 160], "answer": 3},
-
         {"input": [16, 128],
-         "answer": 2
-        },
-
+         "answer": 2},
         {"input": [2, 255],
-         "answer": 7
-        },
-
+         "answer": 7},
         {"input": [100, 200],
-         "answer": 4
-        },
-
+         "answer": 4},
         {"input": [255, 1],
          "answer": 7},
     ],
