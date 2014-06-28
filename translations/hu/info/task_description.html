@@ -1,0 +1,50 @@
+<p>
+    A Hamming-távolság – az két bináris egész szám közötti eltérő bitek számát jelenti 
+    (<a href="http://hu.wikipedia.org/wiki/Hamming-t%C3%A1vols%C3%A1g">
+    bővebben a Hamming-távolságról a Wikipédiában olvashatunk</a>).<br>
+    Például:
+</p>
+<pre>
+    117 = 0 1 1 1 0 1 0 1
+     17 = 0 0 0 1 0 0 0 1
+      H = 0+1+1+0+0+1+0+0 = 3
+
+</pre>
+<p>
+    Adott két (N, M) pozitív decimális érték. Meg kell határozni e két érték binárisan 
+    ábrázolt alakja közötti Hamming-távolságot.
+</p>
+
+<p>
+    <strong>Bementi adatok: </strong> két egész szám (int).
+</p>
+
+<p>
+    <strong>Kimenti adatok: </strong> a Hamming-távolság egész számként (int).
+</p>
+
+<div class="for_info_only">
+
+<p>
+    <strong>Példák:</strong>
+</p>
+<pre class="brush: python">checkio(117, 17) == 3
+checkio(1, 2) == 2
+checkio(16, 15) == 5</pre>
+</div>
+
+<p class="for_info_only">
+    <strong>Alkalmazása: </strong>
+    E feladat alapját képezi a Hamming-kódnak és más lineáris hibajavító szoftvereknek. 
+    A Hamming-távolságot a rendszertanban is alkalmazzák a genetikai távolság 
+    meghatározására. Egy rácsstruktúrában (grid) (pl. a sakktáblán), a Hamming-távolság – 
+    az a bástya által az egyik mezőről a másikra tett minimális lépésszámot jelenti.
+
+</p>
+
+
+<p>
+    <strong>Előfeltételek:</strong><br>
+    0 &lt; n &lt; 10<sup>6</sup><br>
+    0 &lt; m &lt; 10<sup>6</sup><br>
+</p>
