@@ -1,0 +1,14 @@
+"use strict";
+
+function hamming(n, m){
+    return 0;
+}
+
+var assert = require("assert");
+
+if (!global.is_checking) {
+    // These "asserts" using only for self-checking and not necessary for auto-testing
+    assert.equal(hamming(117, 17), 3, "First example");
+    assert.equal(hamming(1, 2), 2, "Second example");
+    assert.equal(hamming(16, 15), 5, "Third example");
+}
