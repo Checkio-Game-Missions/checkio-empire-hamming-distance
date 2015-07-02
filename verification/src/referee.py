@@ -10,7 +10,7 @@ class Referee(RefereeBase):
     DEFAULT_FUNCTION_NAME = "hamming"
     ENV_COVERCODE = {
         ENV_NAME.PYTHON: covercodes.py_unwrap_args,
-        ENV_NAME.JS_NODE: covercodes.py_unwrap_args
+        ENV_NAME.JS_NODE: covercodes.js_unwrap_args
     }
     CALLED_REPRESENTATIONS = {
         ENV_NAME.PYTHON: representations.unwrap_arg_representation,
