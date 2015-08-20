@@ -11,4 +11,5 @@ if (!global.is_checking) {
     assert.equal(hamming(117, 17), 3, "First example");
     assert.equal(hamming(1, 2), 2, "Second example");
     assert.equal(hamming(16, 15), 5, "Third example");
+    console.log("Now that you're finished, hit the 'Check' button to review your code and earn sweet rewards!");
 }
